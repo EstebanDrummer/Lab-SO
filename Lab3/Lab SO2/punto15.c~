@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void){
+	int totalmaterias;
+	float nota;
+	float totalponderado=0;
+	float creditos;
+	float countcreditos=0;
+	
+	int i=0;
+	char materia[20];
+	char *a;
+	//para la tabla
+	char tmateria[]="MATERIA";
+	char tnota[]="NOTA";
+	char tnumerodecreditos[]="NUMERO DE CREDITOS";	
+
+	//char arraymaterias[][];
+	printf("¿Cuantas materias vio en el semestre?\n");
+	scanf("%i", &totalmaterias);
+	char *ListaMaterias[totalmaterias];
+	float ListaDeNotas[totalmaterias];
+	float ListaDeCreditos[totalmaterias];
+	float ListaDeValorCreditos[totalmaterias];
+
+	for(i=0;i<totalmaterias;i++){
+       	 
+	 printf("Escriba el nombre de la materia %i\n",i+1);
+         gets(materia);	
+	 gets(materia);
+         ListaMaterias[i] = malloc(sizeof(char)*20);
+	 strcpy(ListaMaterias[i],materia);
+	 //a=(char *)materia;
+	 //printf("el nombre es %s\n", a);
+	 //ListaMaterias[i][20]=*a;
+
+	printf("¿Cual fue la nota obtenida?\n");
+	scanf("%f", &nota);
+	ListaDeNotas[i]=nota;
+	//printf("la nota fue:%f\n",ListaDeNotas[i]);	
+
+	printf("¿Cuantos creditos tenia?\n");
+	scanf("%f", &creditos);
+	ListaDeCreditos[i]=creditos;
+	//printf("tenia :%f\n",ListaDeCreditos[i]);
+	countcreditos=countcreditos+ListaDeCreditos[i];
+	}
+	
+	for (i = 0; i < totalmaterias; ++i){
+	ListaDeValorCreditos[i]=ListaDeCreditos[i]/countcreditos;
+	totalponderado=totalponderado+(ListaDeValorCreditos[i]*ListaDeNotas[i]);
+	}
+	
+		
+//	printf("El total de creditos es %f\n", countcreditos);
+	//for (i = 0; i < totalmaterias; ++i){
+	//a=(char *)ListaMaterias[i];
+	//printf("el nombre es %s\n", a);
+	//}
+        printf("____________________________________________________________\n");
+	//encabezado
+	printf("%15s%15s%30s\n",tmateria,tnota,tnumerodecreditos);
+        printf("____________________________________________________________\n");
+	//encabezado
+	for (i = 0; i < totalmaterias; ++i){
+	a=(char *)ListaMaterias[i];
+	printf("%15s%15.1f%30.0f\n", a,ListaDeNotas[i],ListaDeCreditos[i]);
+	}
+        printf("____________________________________________________________\n");
+	printf("EL promedio ponderado es %35.2f\n", totalponderado);
+	printf("____________________________________________________________\n");
+
+	//printf("usted vio :%i",totalmaterias);
+	//printf(" materias\n");
+	return 0;//Կ
+}
